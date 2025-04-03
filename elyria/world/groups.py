@@ -1,6 +1,6 @@
 import pygame
-from player import Player
-from settings import *
+from entities.player import Player
+from core.settings import *
 
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):

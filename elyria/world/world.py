@@ -1,10 +1,10 @@
 import pygame
 import pytmx
-from player import Player
-from settings import *
-from sprites import Generic
-from groups import CameraGroup
-from texture_manager import TextureManager
+from entities.player import Player
+from core.settings import *
+from graphics.sprites import Generic
+from world.groups import CameraGroup
+from graphics.texture_manager import TextureManager
 
 
 class World:

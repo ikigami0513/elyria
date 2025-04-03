@@ -1,5 +1,5 @@
 import pygame
-from settings import *
+from core.settings import *
 from typing import Tuple
 
 

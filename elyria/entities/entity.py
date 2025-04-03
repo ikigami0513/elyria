@@ -1,6 +1,6 @@
 import pygame
-from animation import Animation
-from settings import *
+from graphics.animation import Animation
+from core.settings import *
 from typing import Tuple
 
 

@@ -1,6 +1,6 @@
 import pygame
-from entity import Entity
-from animation_manager import AnimationManager
+from entities.entity import Entity
+from graphics.animation_manager import AnimationManager
 from typing import Tuple, Dict
 from enum import Enum
 

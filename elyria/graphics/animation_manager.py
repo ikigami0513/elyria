@@ -1,6 +1,6 @@
 import pygame
-from animation import Animation
-from singleton import SingletonMeta
+from graphics.animation import Animation
+from core.singleton import SingletonMeta
 from typing import Dict, Optional
 
 

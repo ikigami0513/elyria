@@ -1,13 +1,13 @@
 import sys
 import json
 import pygame
-from texture_manager import TextureManager
-from animation_manager import AnimationManager
-from animation import Animation
-from world import World
-from settings import *
+from graphics.texture_manager import TextureManager
+from graphics.animation_manager import AnimationManager
+from graphics.animation import Animation
+from world.world import World
+from core.settings import *
 from typing import Dict, List, Union
-from logger import logger
+from core.logger import logger
 
 
 class Game:

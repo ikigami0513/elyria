@@ -1,5 +1,5 @@
 import pygame
-from singleton import SingletonMeta
+from core.singleton import SingletonMeta
 from typing import Dict, Optional
 
 

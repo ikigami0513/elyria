@@ -1,0 +1,218 @@
+[
+    {
+        "key": "player_base_idle_down",
+        "texture": "player_base_idle",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_base_idle_right",
+        "texture": "player_base_idle",
+        "width": 32,
+        "height": 32,
+        "row": 2,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_base_idle_up",
+        "texture": "player_base_idle",
+        "width": 32,
+        "height": 32,
+        "row": 3,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_base_idle_left",
+        "texture": "player_base_idle",
+        "width": 32,
+        "height": 32,
+        "row": 4,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_base_walk_down",
+        "texture": "player_base_walk",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_base_walk_right",
+        "texture": "player_base_walk",
+        "width": 32,
+        "height": 32,
+        "row": 2,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_base_walk_up",
+        "texture": "player_base_walk",
+        "width": 32,
+        "height": 32,
+        "row": 3,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_base_walk_left",
+        "texture": "player_base_walk",
+        "width": 32,
+        "height": 32,
+        "row": 4,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_hand_idle_down",
+        "texture": "player_hand_idle",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_hand_idle_right",
+        "texture": "player_hand_idle",
+        "width": 32,
+        "height": 32,
+        "row": 2,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_hand_idle_up",
+        "texture": "player_hand_idle",
+        "width": 32,
+        "height": 32,
+        "row": 3,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_hand_idle_left",
+        "texture": "player_hand_idle",
+        "width": 32,
+        "height": 32,
+        "row": 4,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_hand_walk_down",
+        "texture": "player_hand_walk",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_hand_walk_right",
+        "texture": "player_hand_walk",
+        "width": 32,
+        "height": 32,
+        "row": 2,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_hand_walk_up",
+        "texture": "player_hand_walk",
+        "width": 32,
+        "height": 32,
+        "row": 3,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_hand_walk_left",
+        "texture": "player_hand_walk",
+        "width": 32,
+        "height": 32,
+        "row": 4,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_medium_hair_brown_idle_down",
+        "texture": "player_medium_hair_brown_idle",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_medium_hair_brown_idle_right",
+        "texture": "player_medium_hair_brown_idle",
+        "width": 32,
+        "height": 32,
+        "row": 2,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_medium_hair_brown_idle_up",
+        "texture": "player_medium_hair_brown_idle",
+        "width": 32,
+        "height": 32,
+        "row": 3,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_medium_hair_brown_idle_left",
+        "texture": "player_medium_hair_brown_idle",
+        "width": 32,
+        "height": 32,
+        "row": 4,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_medium_hair_brown_walk_down",
+        "texture": "player_medium_hair_brown_walk",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_medium_hair_brown_walk_right",
+        "texture": "player_medium_hair_brown_walk",
+        "width": 32,
+        "height": 32,
+        "row": 2,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_medium_hair_brown_walk_up",
+        "texture": "player_medium_hair_brown_walk",
+        "width": 32,
+        "height": 32,
+        "row": 3,
+        "frames": 6,
+        "speed": 8
+    },
+    {
+        "key": "player_medium_hair_brown_walk_left",
+        "texture": "player_medium_hair_brown_walk",
+        "width": 32,
+        "height": 32,
+        "row": 4,
+        "frames": 6,
+        "speed": 8
+    }
+]

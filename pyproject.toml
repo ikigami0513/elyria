@@ -1,0 +1,19 @@
+[project]
+name = "elyria"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "ikigami0513",email = "ikigami0513@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pygame-ce (>=2.5.3,<3.0.0)",
+    "pygame-gui (>=0.6.13,<0.7.0)",
+    "pytmx (>=3.32,<4.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

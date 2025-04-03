@@ -1,0 +1,30 @@
+[
+    {
+        "key": "ground_layer",
+        "path": "resources/Maps/ground.png"
+    },
+    {
+        "key": "player_base_idle",
+        "path": "resources/Cute_Fantasy/Player/Player_Modular/Player_Base/Player_Base_Idle.png"
+    },
+    {
+        "key": "player_base_walk",
+        "path": "resources/Cute_Fantasy/Player/Player_Modular/Player_Base/Player_Base_Running.png"
+    },
+    {
+        "key": "player_hand_idle",
+        "path": "resources/Cute_Fantasy/Player/Player_Modular/Hands/Hands_Bare/Hands_Bare_Idle.png"
+    },
+    {
+        "key": "player_hand_walk",
+        "path": "resources/Cute_Fantasy/Player/Player_Modular/Hands/Hands_Bare/Hands_Bare_Running.png"
+    },
+    {
+        "key": "player_medium_hair_brown_idle",
+        "path": "resources/Cute_Fantasy/Player/Player_Modular/Hair/Medium_Hair_Brown/Medium_Hair_Brown_Idle.png"
+    },
+    {
+        "key": "player_medium_hair_brown_walk",
+        "path": "resources/Cute_Fantasy/Player/Player_Modular/Hair/Medium_Hair_Brown/Medium_Hair_Brown_Running.png"
+    }
+]

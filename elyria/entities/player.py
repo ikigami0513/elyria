@@ -4,23 +4,21 @@ from graphics.animation_manager import AnimationManager
 from typing import Tuple, Dict
 from enum import Enum
 
-
 class Direction(Enum):
     DOWN = "down"
     RIGHT = "right"
     UP = "up"
     LEFT = "left"
 
-
 class State(Enum):
     IDLE = "idle"
     WALK = "walk"
 
-
 class Player:
-    def __init__(self, pos: Tuple[int, int], groups: Tuple[pygame.sprite.Group], scale: Tuple[int, int] = (1.0, 1.0)):
+    def __init__(self, pos: Tuple[int, int], groups: Tuple[pygame.sprite.Group], collision_sprites: pygame.sprite.Group, scale: Tuple[int, int] = (1.0, 1.0)):
         self.pos = pygame.math.Vector2(pos)
         self.groups = groups
+        self.collision_sprites = collision_sprites
         self.scale = scale
         self.direction_vector = pygame.math.Vector2()
         self.speed = 200
@@ -32,6 +30,7 @@ class Player:
             "player_hand": Entity(self.pos, self.animation_manager.get_animation(f"player_hand_{self.state.value}_{self.direction.value}"), self.groups, self.scale),
             "player_medium_hair_brown": Entity(self.pos, self.animation_manager.get_animation(f"player_medium_hair_brown_{self.state.value}_{self.direction.value}"), self.groups, self.scale)
         }
+        self.body = self.entities["player_base"]
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -67,20 +66,53 @@ class Player:
                 entity.animation = self.animation_manager.get_animation(f"{key}_{self.state.value}_{self.direction.value}")
 
     def move(self, dt: float):
-        # normalizing a vector
         if self.direction_vector.magnitude() > 0:
             self.direction_vector = self.direction_vector.normalize()
 
-        # horizontal movement
         self.pos.x += self.direction_vector.x * self.speed * dt
-        for entity in self.entities.values():
-            entity.pos.x = round(self.pos.x)
-        
-        # vertical movement
+        self.set_pos_x(self.pos.x)
+        self.collision("horizontal")
+
         self.pos.y += self.direction_vector.y * self.speed * dt
+        self.set_pos_y(self.pos.y)
+        self.collision("vertical")
+
+    def set_pos_x(self, x: float):
         for entity in self.entities.values():
-            entity.pos.y = round(self.pos.y)
+            entity.pos.x = x
+            entity.hitbox.centerx = x
+            entity.rect.centerx = x
+
+    def set_pos_y(self, y: float):
+        for entity in self.entities.values():
+            entity.pos.y = y
+            entity.hitbox.centery = y
+            entity.rect.centery = y
+
+    def collision(self, direction: str):
+        for sprite in self.collision_sprites.sprites():
+            if hasattr(sprite, "hitbox"):
+                if sprite.hitbox.colliderect(self.body.hitbox):
+                    if direction == "horizontal":
+                        if self.direction_vector.x > 0:
+                            self.body.hitbox.right = sprite.hitbox.left
+                            self.pos.x = self.body.hitbox.centerx
+                        if self.direction_vector.x < 0:
+                            self.body.hitbox.left = sprite.hitbox.right
+                            self.pos.x = self.body.hitbox.centerx
+                        self.set_pos_x(self.pos.x)
+
+                    if direction == "vertical":
+                        if self.direction_vector.y > 0:
+                            self.body.hitbox.bottom = sprite.hitbox.top
+                            self.pos.y = self.body.hitbox.centery
+                        if self.direction_vector.y < 0:
+                            self.body.hitbox.top = sprite.hitbox.bottom
+                            self.pos.y = self.body.hitbox.centery
+                        self.set_pos_y(self.pos.y)
 
     def update(self, dt: float):
         self.input()
         self.move(dt)
+        for entity in self.entities.values():
+            entity.update(dt)

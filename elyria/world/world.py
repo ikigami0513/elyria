@@ -11,23 +11,33 @@ class World:
     def __init__(self):
         self.display_surface = pygame.display.get_surface()
         self.all_sprites = CameraGroup()
+        self.collision_sprites = pygame.sprite.Group()
         self.setup()
 
     def setup(self) -> None:
         map_data = pytmx.load_pygame("data/maps/map.tmx")
 
-        # ground_layer = map_data.get_layer_by_name("Ground")
-        # if ground_layer is not None and isinstance(ground_layer, pytmx.TiledTileLayer):
-        #     for x, y, gid in ground_layer:
-        #         tile = map_data.get_tile_image_by_gid(gid)
-        #         if tile:
-        #             Generic((x * TILE_SIZE * 2, y * TILE_SIZE * 2), pygame.transform.scale(tile, (TILE_SIZE * 2, TILE_SIZE * 2)), self.all_sprites)
+        collision_layer = map_data.get_layer_by_name("Collisions")
+        if collision_layer is not None and isinstance(collision_layer, pytmx.TiledTileLayer):
+            for x, y, gid in collision_layer:
+                tile = map_data.get_tile_image_by_gid(gid)
+                if tile:
+                    Generic(
+                        pos=(x * TILE_SIZE * SCALE_FACTOR, y * TILE_SIZE * SCALE_FACTOR), 
+                        surf=pygame.Surface((TILE_SIZE * SCALE_FACTOR, TILE_SIZE * SCALE_FACTOR)),
+                        groups=self.collision_sprites
+                    )
 
         entities_layer = map_data.get_layer_by_name("Entities")
         if entities_layer is not None and isinstance(entities_layer, pytmx.TiledObjectGroup):
             for obj in entities_layer:
-                if obj.name == "PlayerStart":
-                    self.player = Player(pos=(obj.x * SCALE_FACTOR, obj.y * SCALE_FACTOR), groups=self.all_sprites, scale=(SCALE_FACTOR, SCALE_FACTOR))
+                if obj.name == "PlayerSpawn":
+                    self.player = Player(
+                        pos=(obj.x * SCALE_FACTOR, obj.y * SCALE_FACTOR), 
+                        groups=self.all_sprites,
+                        collision_sprites=self.collision_sprites,
+                        scale=(SCALE_FACTOR, SCALE_FACTOR)
+                    )
 
         ground_texture = TextureManager().get_texture("ground_layer")
         Generic(

@@ -10,6 +10,7 @@ class Entity(pygame.sprite.Sprite):
         self.animation = animation
         self.image = self.animation.get_frame()
         self.rect = self.image.get_rect(center=pos)
+        self.hitbox = self.rect.copy().inflate((-8, -8))
         self.pos = pygame.math.Vector2(self.rect.center)
         self.scale = pygame.math.Vector2(scale)
         self.z = z
@@ -19,3 +20,4 @@ class Entity(pygame.sprite.Sprite):
         self.image = self.animation.get_frame()
         self.image = pygame.transform.scale(self.image, (self.image.width * self.scale.x, self.image.height * self.scale.y))
         self.rect = self.image.get_rect(center=self.pos)
+        self.hitbox = self.rect.copy().inflate((-32, -32))

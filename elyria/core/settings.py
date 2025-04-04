@@ -1,10 +1,10 @@
 DEBUG_RECT = False
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1280
+SCREEN_HEIGHT = 720
 
 TILE_SIZE = 16
-SCALE_FACTOR = 2
+SCALE_FACTOR = 3
 
 LAYERS = {
 	'water': 0,
@@ -19,3 +19,13 @@ LAYERS = {
 	'fruit': 9,
 	'rain drops': 10
 }
+
+TEXTURES_FILES = [
+    "data/textures/player.json",
+    "data/textures/layers.json",
+    "data/textures/ui.json"
+]
+
+ANIMATIONS_FILES = [
+    "data/animations/player.json"
+]

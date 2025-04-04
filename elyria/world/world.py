@@ -13,6 +13,7 @@ class World:
         self.display_surface = pygame.display.get_surface()
         self.all_sprites = CameraGroup()
         self.collision_sprites = pygame.sprite.Group()
+        self.ui_layer = pygame.sprite.Group()
         self.setup()
 
     def setup(self) -> None:
@@ -37,6 +38,7 @@ class World:
                         pos=(obj.x * SCALE_FACTOR, obj.y * SCALE_FACTOR), 
                         groups=self.all_sprites,
                         collision_sprites=self.collision_sprites,
+                        ui_layer=self.ui_layer,
                         scale=(SCALE_FACTOR, SCALE_FACTOR)
                     )
 
@@ -49,11 +51,13 @@ class World:
         )
 
     def update(self, dt: float) -> None:
+        self.ui_layer.update(dt, )
         self.player.update(dt)
         self.all_sprites.update(dt)
 
     def draw(self):
         self.display_surface.fill('black')
         self.all_sprites.draw(self.player)
+        self.ui_layer.draw(self.display_surface)
         pygame.display.update()
         

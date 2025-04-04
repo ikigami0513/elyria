@@ -22,7 +22,7 @@ class Game:
         version_string = f"pygame-ce {pygame_version} (SDL {'.'.join(map(str, sdl_version))}, Python {python_version})"
         logger.info(version_string)
 
-        self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.RESIZABLE)
         pygame.display.set_caption(f"Elyria - 0 FPS")
         self.clock = pygame.time.Clock()
         self.running = True
@@ -32,28 +32,30 @@ class Game:
 
     def load(self):
         texture_manager = TextureManager()
-        with open(resource_path("data/textures.json"), "r") as f:
-            textures: List[Dict[str, str]] = json.load(f)
+        for file in TEXTURES_FILES:
+            with open(resource_path(file), "r") as f:
+                textures: List[Dict[str, str]] = json.load(f)
 
-        for texture in textures:
-            texture_manager.add_texture(texture["key"], resource_path(texture["path"]))
-        logger.info(f"Textures loaded from data/textures.json file")
+            for texture in textures:
+                texture_manager.add_texture(texture["key"], resource_path(texture["path"]))
+            logger.info(f"Textures loaded from {file} file.")
 
         animation_manager = AnimationManager()
-        with open(resource_path("data/animations.json"), "r") as f:
-            animations: List[Dict[str, Union[str, int]]] = json.load(f)
+        for file in ANIMATIONS_FILES:
+            with open(resource_path(file), "r") as f:
+                animations: List[Dict[str, Union[str, int]]] = json.load(f)
 
-        for animation in animations:
-            animation_manager.add_animation(
-                animation["key"], 
-                Animation(
-                    texture_manager.get_texture(animation["texture"]), 
-                    animation["width"], animation["height"], 
-                    animation["row"], animation["frames"], 
-                    animation["speed"]
+            for animation in animations:
+                animation_manager.add_animation(
+                    animation["key"], 
+                    Animation(
+                        texture_manager.get_texture(animation["texture"]), 
+                        animation["width"], animation["height"], 
+                        animation["row"], animation["frames"], 
+                        animation["speed"]
+                    )
                 )
-            )
-        logger.info(f"Animations loaded from data/animations.json file")
+            logger.info(f"Animations loaded from {file} file.")
 
     def run(self):
         while self.running:
@@ -68,6 +70,16 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
+            elif event.type == pygame.VIDEORESIZE:
+                self.on_resize(event.w, event.h)
+
+    def on_resize(self, width: int, height: int):
+        self.world.all_sprites.set_half(width, height)
+        for ui_element in self.world.ui_layer.sprites():
+            if hasattr(ui_element, "on_window_resize"):
+                ui_element.on_window_resize(width, height)
+        
+        logger.info(f"Window resized to {width}x{height}")
 
     def update(self):
         dt = self.clock.tick() / 1000.0

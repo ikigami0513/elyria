@@ -1,9 +1,5 @@
 [
     {
-        "key": "ground_layer",
-        "path": "resources/Maps/ground.png"
-    },
-    {
         "key": "player_base_idle",
         "path": "resources/Cute_Fantasy/Player/Player_Modular/Player_Base/Player_Base_Idle.png"
     },

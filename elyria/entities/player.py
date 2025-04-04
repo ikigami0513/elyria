@@ -1,8 +1,11 @@
 import pygame
 from entities.entity import Entity
 from graphics.animation_manager import AnimationManager
+from ui.hotbar import Hotbar
 from typing import Tuple, Dict
 from enum import Enum
+from core.settings import *
+
 
 class Direction(Enum):
     DOWN = "down"
@@ -10,12 +13,14 @@ class Direction(Enum):
     UP = "up"
     LEFT = "left"
 
+
 class State(Enum):
     IDLE = "idle"
     WALK = "walk"
 
+
 class Player:
-    def __init__(self, pos: Tuple[int, int], groups: Tuple[pygame.sprite.Group], collision_sprites: pygame.sprite.Group, scale: Tuple[int, int] = (1.0, 1.0)):
+    def __init__(self, pos: Tuple[int, int], groups: Tuple[pygame.sprite.Group], collision_sprites: pygame.sprite.Group, ui_layer: pygame.sprite.Group, scale: Tuple[int, int] = (1.0, 1.0)):
         self.pos = pygame.math.Vector2(pos)
         self.groups = groups
         self.collision_sprites = collision_sprites
@@ -31,6 +36,13 @@ class Player:
             "player_medium_hair_brown": Entity(self.pos, self.animation_manager.get_animation(f"player_medium_hair_brown_{self.state.value}_{self.direction.value}"), self.groups, self.scale)
         }
         self.body = self.entities["player_base"]
+
+        # gui
+        self.ui_layer = ui_layer
+        self.hotbar = Hotbar(
+            texture_name="ui_premade",
+            groups=self.ui_layer
+        )
 
     def input(self):
         keys = pygame.key.get_pressed()

@@ -1,14 +1,15 @@
 import pygame
 from entities.player import Player
 from core.settings import *
+from core.utils import get_window_size
 
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
         self.display_surface = pygame.display.get_surface()
         self.offset = pygame.math.Vector2()
-        self.half_width = self.display_surface.get_size()[0] // 2
-        self.half_height = self.display_surface.get_size()[1] // 2
+        self.half_width = get_window_size()[0] // 2
+        self.half_height = get_window_size()[1] // 2
 
     def draw(self, player: Player):
         self.offset.x = player.entities["player_base"].rect.centerx - self.half_width
@@ -28,3 +29,7 @@ class CameraGroup(pygame.sprite.Group):
                             hitbox = sprite.hitbox.copy()
                             hitbox.topleft -= self.offset
                             pygame.draw.rect(self.display_surface, (0, 255, 0), hitbox, 1)
+
+    def set_half(self, width: int, height: int):
+        self.half_width = width // 2
+        self.half_height = height // 2

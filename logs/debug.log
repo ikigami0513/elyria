@@ -298,3 +298,15 @@
 2025-04-04 10:30:25,813 - ElyriaLogger - INFO - pygame-ce 2.5.3 (SDL 2.30.12, Python 3.13.1)
 2025-04-04 10:30:25,932 - ElyriaLogger - INFO - Textures loaded from data/textures.json file
 2025-04-04 10:30:25,932 - ElyriaLogger - INFO - Animations loaded from data/animations.json file
+2025-04-04 10:32:25,556 - ElyriaLogger - INFO - 3.13.1 (main, Dec 19 2024, 23:53:21) [GCC 13.3.0]
+2025-04-04 10:32:25,557 - ElyriaLogger - INFO - pygame-ce 2.5.3 (SDL 2.30.12, Python 3.13.1)
+2025-04-04 10:32:25,677 - ElyriaLogger - INFO - Textures loaded from data/textures.json file
+2025-04-04 10:32:25,677 - ElyriaLogger - INFO - Animations loaded from data/animations.json file
+2025-04-04 10:49:28,841 - ElyriaLogger - INFO - 3.13.1 (main, Dec 19 2024, 23:53:21) [GCC 13.3.0]
+2025-04-04 10:49:28,841 - ElyriaLogger - INFO - pygame-ce 2.5.3 (SDL 2.30.12, Python 3.13.1)
+2025-04-04 10:49:28,949 - ElyriaLogger - INFO - Textures loaded from data/textures.json file
+2025-04-04 10:49:28,949 - ElyriaLogger - INFO - Animations loaded from data/animations.json file
+2025-04-04 10:49:33,283 - ElyriaLogger - INFO - 3.13.1 (main, Dec 19 2024, 23:53:21) [GCC 13.3.0]
+2025-04-04 10:49:33,284 - ElyriaLogger - INFO - pygame-ce 2.5.3 (SDL 2.30.12, Python 3.13.1)
+2025-04-04 10:49:33,386 - ElyriaLogger - INFO - Textures loaded from data/textures.json file
+2025-04-04 10:49:33,387 - ElyriaLogger - INFO - Animations loaded from data/animations.json file

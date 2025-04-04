@@ -5,6 +5,7 @@ from core.settings import *
 from graphics.sprites import Generic
 from world.groups import CameraGroup
 from graphics.texture_manager import TextureManager
+from core.utils import resource_path
 
 
 class World:
@@ -15,7 +16,7 @@ class World:
         self.setup()
 
     def setup(self) -> None:
-        map_data = pytmx.load_pygame("data/maps/map.tmx")
+        map_data = pytmx.load_pygame(resource_path("data/maps/map.tmx"))
 
         collision_layer = map_data.get_layer_by_name("Collisions")
         if collision_layer is not None and isinstance(collision_layer, pytmx.TiledTileLayer):

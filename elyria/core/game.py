@@ -8,6 +8,7 @@ from world.world import World
 from core.settings import *
 from typing import Dict, List, Union
 from core.logger import logger
+from core.utils import resource_path
 
 
 class Game:
@@ -31,15 +32,15 @@ class Game:
 
     def load(self):
         texture_manager = TextureManager()
-        with open("data/textures.json", "r") as f:
+        with open(resource_path("data/textures.json"), "r") as f:
             textures: List[Dict[str, str]] = json.load(f)
 
         for texture in textures:
-            texture_manager.add_texture(texture["key"], texture["path"])
+            texture_manager.add_texture(texture["key"], resource_path(texture["path"]))
         logger.info(f"Textures loaded from data/textures.json file")
 
         animation_manager = AnimationManager()
-        with open("data/animations.json", "r") as f:
+        with open(resource_path("data/animations.json"), "r") as f:
             animations: List[Dict[str, Union[str, int]]] = json.load(f)
 
         for animation in animations:

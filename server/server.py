@@ -1,38 +1,20 @@
 import json
+import asyncio
+from twisted.internet import asyncioreactor
+asyncioreactor.install()
+
 from twisted.internet import protocol
-from singleton import SingletonMeta
-import pytmx
-from pytmx.util_pygame import load_pygame
+from player import Player
+from tortoise import Tortoise
+from models.player_model import PlayerModel
 
 
-SCCALE_FACTOR = 2
-
-
-class World(metaclass=SingletonMeta):
-    def __init__(self):
-        self.map = load_pygame("data/maps/map.tmx")
-
-        entities_layer = self.map.get_layer_by_name("Entities")
-        if entities_layer is not None and isinstance(entities_layer, pytmx.TiledObjectGroup):
-            for obj in entities_layer:
-                if obj.name == "PlayerSpawn":
-                    self.player_spawn = (obj.x * SCCALE_FACTOR, obj.y * SCCALE_FACTOR)
-
-
-class Player:
-    def __init__(self, player_id, transport):
-        self.id = player_id
-        self.transport = transport
-        self.position = World().player_spawn
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "position": {
-                "x": self.position[0],
-                "y": self.position[1]
-            }
-        }
+async def init_orm():
+    await Tortoise.init(
+        db_url="sqlite://db.sqlite3",
+        modules={"models": ["models"]}
+    )
+    await Tortoise.generate_schemas()
 
 
 class GameServer(protocol.Protocol):

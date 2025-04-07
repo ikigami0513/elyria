@@ -1,3 +1,6 @@
+HOST = "localhost"
+PORT = 9000
+
 DEBUG_RECT = False
 
 SCREEN_WIDTH = 1280
@@ -21,11 +24,21 @@ LAYERS = {
 }
 
 TEXTURES_FILES = [
-    "data/textures/player.json",
+    "data/textures/player/player_base.json",
+    "data/textures/player/player_hand.json",
+    "data/textures/player/player_medium_hair_brown.json",
+    "data/textures/player/player_shirt_green.json",
     "data/textures/layers.json",
     "data/textures/ui.json"
 ]
 
 ANIMATIONS_FILES = [
-    "data/animations/player.json"
+    "data/animations/player/player_base_idle.json",
+    "data/animations/player/player_base_walk.json",
+    "data/animations/player/player_hand_idle.json",
+    "data/animations/player/player_hand_walk.json",
+    "data/animations/player/player_medium_hair_brown_idle.json",
+    "data/animations/player/player_medium_hair_brown_walk.json",
+    "data/animations/player/player_shirt_green_idle.json",
+    "data/animations/player/player_shirt_green_walk.json"
 ]

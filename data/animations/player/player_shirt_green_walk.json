@@ -1,0 +1,38 @@
+[
+    {
+        "key": "player_shirt_green_walk_down",
+        "texture": "player_shirt_green_walk",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 5
+    },
+    {
+        "key": "player_shirt_green_walk_right",
+        "texture": "player_shirt_green_walk",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 5
+    },
+    {
+        "key": "player_shirt_green_walk_up",
+        "texture": "player_shirt_green_walk",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 5
+    },
+    {
+        "key": "player_shirt_green_walk_left",
+        "texture": "player_shirt_green_walk",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 5
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "key": "player_shirt_green_idle",
+        "path": "resources/Cute_Fantasy/Player/Player_Modular/Clothes/Shirt_Green/Shirt_Green_Idle.png"
+    },
+    {
+        "key": "player_shirt_green_walk",
+        "path": "resources/Cute_Fantasy/Player/Player_Modular/Clothes/Shirt_Green/Shirt_Green_Running.png"
+    }
+]

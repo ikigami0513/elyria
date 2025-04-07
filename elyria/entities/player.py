@@ -5,6 +5,7 @@ from ui.hotbar import Hotbar
 from typing import Tuple, Dict
 from enum import Enum
 from core.settings import *
+from network.gameclient import GameClient
 
 
 class Direction(Enum):
@@ -20,7 +21,7 @@ class State(Enum):
 
 
 class Player:
-    def __init__(self, pos: Tuple[int, int], groups: Tuple[pygame.sprite.Group], collision_sprites: pygame.sprite.Group, ui_layer: pygame.sprite.Group, scale: Tuple[int, int] = (1.0, 1.0)):
+    def __init__(self, pos: Tuple[int, int], groups: Tuple[pygame.sprite.Group], collision_sprites: pygame.sprite.Group, ui_layer: pygame.sprite.Group, is_local: bool, scale: Tuple[int, int] = (1.0, 1.0)):
         self.pos = pygame.math.Vector2(pos)
         self.groups = groups
         self.collision_sprites = collision_sprites
@@ -32,50 +33,57 @@ class Player:
         self.animation_manager = AnimationManager()
         self.entities: Dict[str, Entity] = {
             "player_base": Entity(self.pos, self.animation_manager.get_animation(f"player_base_{self.state.value}_{self.direction.value}"), self.groups, self.scale),
+            "player_medium_hair_brown": Entity(self.pos, self.animation_manager.get_animation(f"player_medium_hair_brown_{self.state.value}_{self.direction.value}"), self.groups, self.scale),
+            "player_shirt_green": Entity(self.pos, self.animation_manager.get_animation(f"player_shirt_green_{self.state.value}_{self.direction.value}"), self.groups, self.scale),
             "player_hand": Entity(self.pos, self.animation_manager.get_animation(f"player_hand_{self.state.value}_{self.direction.value}"), self.groups, self.scale),
-            "player_medium_hair_brown": Entity(self.pos, self.animation_manager.get_animation(f"player_medium_hair_brown_{self.state.value}_{self.direction.value}"), self.groups, self.scale)
         }
         self.body = self.entities["player_base"]
 
+        # networking
+        self.is_local = is_local
+
         # gui
-        self.ui_layer = ui_layer
-        self.hotbar = Hotbar(
-            texture_name="ui_premade",
-            groups=self.ui_layer
-        )
+        # usefull only if local player
+        if self.is_local:
+            self.ui_layer = ui_layer
+            self.hotbar = Hotbar(
+                texture_name="ui_premade",
+                groups=self.ui_layer
+            )
 
     def input(self):
-        keys = pygame.key.get_pressed()
-        new_direction = self.direction
-        new_state = State.IDLE
+        if self.is_local:
+            keys = pygame.key.get_pressed()
+            new_direction = self.direction
+            new_state = State.IDLE
 
-        if keys[pygame.K_z]:
-            self.direction_vector.y = -1
-            new_direction = Direction.UP
-            new_state = State.WALK
-        elif keys[pygame.K_s]:
-            self.direction_vector.y = 1
-            new_direction = Direction.DOWN
-            new_state = State.WALK
-        else:
-            self.direction_vector.y = 0
+            if keys[pygame.K_z]:
+                self.direction_vector.y = -1
+                new_direction = Direction.UP
+                new_state = State.WALK
+            elif keys[pygame.K_s]:
+                self.direction_vector.y = 1
+                new_direction = Direction.DOWN
+                new_state = State.WALK
+            else:
+                self.direction_vector.y = 0
 
-        if keys[pygame.K_d]:
-            self.direction_vector.x = 1
-            new_direction = Direction.RIGHT
-            new_state = State.WALK
-        elif keys[pygame.K_q]:
-            self.direction_vector.x = -1
-            new_direction = Direction.LEFT
-            new_state = State.WALK
-        else:
-            self.direction_vector.x = 0
+            if keys[pygame.K_d]:
+                self.direction_vector.x = 1
+                new_direction = Direction.RIGHT
+                new_state = State.WALK
+            elif keys[pygame.K_q]:
+                self.direction_vector.x = -1
+                new_direction = Direction.LEFT
+                new_state = State.WALK
+            else:
+                self.direction_vector.x = 0
 
-        if new_direction != self.direction or new_state != self.state:
-            self.direction = new_direction
-            self.state = new_state
-            for key, entity in self.entities.items():
-                entity.animation = self.animation_manager.get_animation(f"{key}_{self.state.value}_{self.direction.value}")
+            if new_direction != self.direction or new_state != self.state:
+                self.direction = new_direction
+                self.state = new_state
+                for key, entity in self.entities.items():
+                    entity.animation = self.animation_manager.get_animation(f"{key}_{self.state.value}_{self.direction.value}")
 
     def move(self, dt: float):
         if self.direction_vector.magnitude() > 0:

@@ -1,6 +1,7 @@
 import sys
 import json
 import pygame
+from core.singleton import SingletonMeta
 from graphics.texture_manager import TextureManager
 from graphics.animation_manager import AnimationManager
 from graphics.animation import Animation
@@ -9,11 +10,13 @@ from core.settings import *
 from typing import Dict, List, Union
 from core.logger import logger
 from core.utils import resource_path
+from threading import Thread
+from network.gameclient import start_twisted
 
 
-class Game:
+class Game(metaclass=SingletonMeta):
     def __init__(self):
-        pygame.init()
+        success, failure = pygame.init()
 
         logger.info(sys.version.replace("\n", " "))
         pygame_version = pygame.version.ver
@@ -22,6 +25,8 @@ class Game:
         version_string = f"pygame-ce {pygame_version} (SDL {'.'.join(map(str, sdl_version))}, Python {python_version})"
         logger.info(version_string)
 
+        logger.info(f"{success} modules loaded successfully, {failure} modules could not be loaded")
+
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.RESIZABLE)
         pygame.display.set_caption(f"Elyria - 0 FPS")
         self.clock = pygame.time.Clock()
@@ -29,6 +34,8 @@ class Game:
         self.load()
         self.world = World()
         self.fps_update_time = 0
+
+        Thread(target=start_twisted, daemon=True).start()
 
     def load(self):
         texture_manager = TextureManager()

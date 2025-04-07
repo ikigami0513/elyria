@@ -1,0 +1,10 @@
+[
+    {
+        "key": "player_medium_hair_brown_idle",
+        "path": "resources/Cute_Fantasy/Player/Player_Modular/Hair/Medium_Hair_Brown/Medium_Hair_Brown_Idle.png"
+    },
+    {
+        "key": "player_medium_hair_brown_walk",
+        "path": "resources/Cute_Fantasy/Player/Player_Modular/Hair/Medium_Hair_Brown/Medium_Hair_Brown_Running.png"
+    }
+]

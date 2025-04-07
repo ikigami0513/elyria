@@ -6,6 +6,7 @@ from graphics.sprites import Generic
 from world.groups import CameraGroup
 from graphics.texture_manager import TextureManager
 from core.utils import resource_path
+from network.gameclient import GameClient
 
 
 class World:
@@ -14,6 +15,7 @@ class World:
         self.all_sprites = CameraGroup()
         self.collision_sprites = pygame.sprite.Group()
         self.ui_layer = pygame.sprite.Group()
+        self.player = None
         self.setup()
 
     def setup(self) -> None:
@@ -30,18 +32,6 @@ class World:
                         groups=self.collision_sprites
                     )
 
-        entities_layer = map_data.get_layer_by_name("Entities")
-        if entities_layer is not None and isinstance(entities_layer, pytmx.TiledObjectGroup):
-            for obj in entities_layer:
-                if obj.name == "PlayerSpawn":
-                    self.player = Player(
-                        pos=(obj.x * SCALE_FACTOR, obj.y * SCALE_FACTOR), 
-                        groups=self.all_sprites,
-                        collision_sprites=self.collision_sprites,
-                        ui_layer=self.ui_layer,
-                        scale=(SCALE_FACTOR, SCALE_FACTOR)
-                    )
-
         ground_texture = TextureManager().get_texture("ground_layer")
         Generic(
             pos=(0, 0),
@@ -51,13 +41,15 @@ class World:
         )
 
     def update(self, dt: float) -> None:
-        self.ui_layer.update(dt, )
-        self.player.update(dt)
+        self.ui_layer.update(dt)
+        if self.player:
+            self.player.update(dt)
         self.all_sprites.update(dt)
 
     def draw(self):
         self.display_surface.fill('black')
-        self.all_sprites.draw(self.player)
+        if self.player:
+            self.all_sprites.draw(self.player)
         self.ui_layer.draw(self.display_surface)
         pygame.display.update()
         

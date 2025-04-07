@@ -1,0 +1,10 @@
+[
+    {
+        "key": "player_hand_idle",
+        "path": "resources/Cute_Fantasy/Player/Player_Modular/Hands/Hands_Bare/Hands_Bare_Idle.png"
+    },
+    {
+        "key": "player_hand_walk",
+        "path": "resources/Cute_Fantasy/Player/Player_Modular/Hands/Hands_Bare/Hands_Bare_Running.png"
+    }
+]

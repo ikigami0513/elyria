@@ -1,0 +1,38 @@
+[
+    {
+        "key": "player_shirt_green_idle_down",
+        "texture": "player_shirt_green_idle",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 5
+    },
+    {
+        "key": "player_shirt_green_idle_right",
+        "texture": "player_shirt_green_idle",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 5
+    },
+    {
+        "key": "player_shirt_green_idle_up",
+        "texture": "player_shirt_green_idle",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 5
+    },
+    {
+        "key": "player_shirt_green_idle_left",
+        "texture": "player_shirt_green_idle",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 5
+    }
+]

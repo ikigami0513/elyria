@@ -1,0 +1,38 @@
+[
+    {
+        "key": "player_hand_walk_down",
+        "texture": "player_hand_walk",
+        "width": 32,
+        "height": 32,
+        "row": 1,
+        "frames": 6,
+        "speed": 5
+    },
+    {
+        "key": "player_hand_walk_right",
+        "texture": "player_hand_walk",
+        "width": 32,
+        "height": 32,
+        "row": 2,
+        "frames": 6,
+        "speed": 5
+    },
+    {
+        "key": "player_hand_walk_up",
+        "texture": "player_hand_walk",
+        "width": 32,
+        "height": 32,
+        "row": 3,
+        "frames": 6,
+        "speed": 5
+    },
+    {
+        "key": "player_hand_walk_left",
+        "texture": "player_hand_walk",
+        "width": 32,
+        "height": 32,
+        "row": 4,
+        "frames": 6,
+        "speed": 5
+    }
+]

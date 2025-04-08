@@ -1,10 +1,11 @@
 import os
 import pygame
 from twisted.internet import reactor
-from server import GameServerFactory
+from gameserver import GameServerFactory
 from world import World
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
+os.makedirs("server/data/players", exist_ok=True)
 pygame.init()
 pygame.display.set_mode((1, 1))
 World()

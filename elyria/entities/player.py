@@ -41,6 +41,9 @@ class Player:
 
         # networking
         self.is_local = is_local
+        self.last_sent_position = self.pos.copy()
+        self.send_cooldown = 0.05  # 20 fois par seconde (20 ticks)
+        self.send_timer = 0.0
 
         # gui
         # usefull only if local player
@@ -96,6 +99,20 @@ class Player:
         self.pos.y += self.direction_vector.y * self.speed * dt
         self.set_pos_y(self.pos.y)
         self.collision("vertical")
+
+        # Envoyer seulement si on bouge et que timer écoulé
+        if self.direction_vector.length_squared() > 0:
+            self.send_timer += dt
+            if self.send_timer >= self.send_cooldown:
+                self.send_timer = 0
+                if self.pos.distance_to(self.last_sent_position) > 1.0:
+                    GameClient().send_message("move", {
+                        "position": {
+                            "x": self.pos.x,
+                            "y": self.pos.y
+                        }
+                    })
+                    self.last_sent_position = self.pos.copy()
 
     def set_pos_x(self, x: float):
         for entity in self.entities.values():
